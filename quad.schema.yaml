@@ -55,7 +55,7 @@ engine:
 speller:
   alphabet: "zscfwmldynjtpqgbxviu"
   initials: "zscfwmldynjtpqgbx"
-  delimiter: " '"
+  delimiter: " 'viu"
   algebra:
     - xform/^([jqxy])u$/$1v
     - xform/^zh/Z/
@@ -103,21 +103,6 @@ speller:
     - xform/u/D/
     - xform/v/M/
     - xlit/ZSCFWMLDYNJTPQGBX/zscfwmldynjtpqgbx/
-    - derive/^([zscfwmldynjtpqgbx]{2})/$1v/
-    - derive/^([zscfwmldynjtpqgbx]{2})/$1i/
-    - derive/^([zscfwmldynjtpqgbx]{2})/$1u/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu])/$1v/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu])/$1i/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu])/$1u/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{2})/$1v/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{2})/$1i/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{2})/$1u/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{3})/$1v/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{3})/$1i/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{3})/$1u/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{4})/$1v/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{4})/$1i/
-    - derive/^([zscfwmldynjtpqgbx]{2}[viu]{4})/$1u/
 
 translator:
   dictionary: quad
