@@ -3,7 +3,7 @@
 
 schema:
   schema_id: quad
-  name: 四格双拼
+  name: 四格声笔
   version: "1.0.0"
   author:
     - fkxxyz (四叶草拼音词库)
