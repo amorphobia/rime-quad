@@ -1,0 +1,26 @@
+# Rime dict
+# encoding: utf-8
+#
+# 以下词典均来自四叶草拼音 (https://github.com/fkxxyz/rime-cloverpinyin)
+#
+
+---
+name: quad
+version: "1.0.0"
+sort: by_weight
+import_tables:
+  - clover.base
+  - clover.phrase
+  - THUOCL_animal
+  - THUOCL_caijing
+  - THUOCL_car
+  - THUOCL_chengyu
+  - THUOCL_diming
+  - THUOCL_food
+  - THUOCL_IT
+  - THUOCL_law
+  - THUOCL_lishimingren
+  - THUOCL_medical
+  - THUOCL_poem
+  - sogou_new_words
+...
