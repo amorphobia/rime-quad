@@ -117,7 +117,6 @@ local function filter(input, env)
     local input_text = ctx.input
     for cand in input:iter() do
         local cand_inp = input_text:sub(cand.start + 1, cand._end)
-        -- cand:get_genuine().comment = cand.comment .. " " .. cand_inp
         if utf8.len(cand.text) == 1 then
             local preedit = correct_preedit(cand.text, cand_inp, env.pinyin_db)
             if preedit then
@@ -132,7 +131,6 @@ local function filter(input, env)
         else
             -- assume phrases do not have any strokes
             local preedit = ""
-            -- local text_len = utf8.len(cand.text)
             local i = 0
             local _t = ""
             for code in utf8.codes(cand.text) do
@@ -142,30 +140,16 @@ local function filter(input, env)
                 local text = cand.text:sub(code, code + byte_count - 1)
                 local inp = cand_inp:sub(i*2-1, i*2)
                 local char_preedit = correct_preedit(text, inp, env.pinyin_db)
+                if preedit:len() > 0 then
+                    preedit = preedit .. " "
+                end
                 if char_preedit then
-                    preedit = preedit .. " " .. char_preedit
+                    preedit = preedit .. char_preedit
                 else
-                    preedit = preedit .. " " .. inp
+                    preedit = preedit .. inp
                 end
             end
-            -- local _inp = ""
-            -- for i = 1, text_len-1 do
-                -- local text = utf8.sub(cand.text, i, i)
-                -- local inp = cand_inp:sub(i*2-1, i*2)
-                -- _inp = _inp .. " " .. inp
-                -- local char_preedit = correct_preedit(text, inp, env.pinyin_db)
-                -- preedit = preedit .. " " .. char_preedit
-            -- end
-            -- local last_text = utf8.sub(text_len)
-            -- local last_inp = cand_inp:sub(text_len*2-1)
-            -- local last_preedit = correct_preedit(last_text, last_inp, env.pinyin_db)
-            -- if last_preedit then
-            --     preedit = preedit .. " " .. last_preedit
-            -- else
-            --     preedit = preedit .. " " .. last_inp
-            -- end
-            -- cand:get_genuine().preedit = preedit
-            cand:get_genuine().comment = cand.comment .. " " .. _t
+            cand:get_genuine().preedit = preedit
         end
         local has_stroke = cand_inp:match("[viuoa]")
         if not has_stroke then
