@@ -1,29 +1,3 @@
-local function split(inputstr, sep)
-    if sep == nil then
-            sep = "%s"
-    end
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-            table.insert(t, str)
-    end
-    return t
-end
-
-local function utf8_byte_count(byte)
-    if not byte then
-        return 0
-    elseif byte > 0 and byte <= 127 then
-        return 1
-    elseif byte >= 192 and byte <= 223 then
-        return 2
-    elseif byte >= 224 and byte <= 239 then
-        return 3
-    elseif byte >= 240 and byte <= 247 then
-        return 4
-    end
-    return 1
-end
-
 local function check_stroke(cand, inp, db)
     local inp_stroke = inp:match("[viuoa]+")
     if not inp_stroke then
@@ -102,8 +76,9 @@ local function correct_preedit(text, inp, db)
         return nil
     end
     local inp = inp:sub(1, 2)
-    local spellings = split(db:lookup(text))
-    for _, pinyin in ipairs(spellings) do
+    local lookup = db:lookup(text)
+    for pinyin in lookup:gmatch("%w+%s?") do
+        pinyin = pinyin:gsub("%s+", "")
         local shuangpin = pinyin_to_shuangpin(pinyin)
         if shuangpin and shuangpin == inp then
             return pinyin
@@ -132,12 +107,8 @@ local function filter(input, env)
             -- assume phrases do not have any strokes
             local preedit = ""
             local i = 0
-            local _t = ""
-            for code in utf8.codes(cand.text) do
+            for text in cand.text:gmatch(utf8.charpattern) do
                 i = i + 1
-                local byte = cand.text:byte(code)
-                local byte_count = utf8_byte_count(byte)
-                local text = cand.text:sub(code, code + byte_count - 1)
                 local inp = cand_inp:sub(i*2-1, i*2)
                 local char_preedit = correct_preedit(text, inp, env.pinyin_db)
                 if preedit:len() > 0 then
