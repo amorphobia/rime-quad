@@ -77,23 +77,26 @@ preset_keyboards:
     horizontal_gap: *T9HorzGap
     vertical_gap: *T9VertGap
     keys:
-      - {click: DefaultKeyboard}
+      - {click: DefaultKeyboard, width: 10}
+      - {click: moreSymbols, width: 10}
       - {click: 1}
       - {click: 2}
       - {click: 3}
       - {click: BackSpace}
-      - {click: english}
+      - {click: numT9Plus, width: 10}
+      - {click: numT9Minus, width: 10}
       - {click: 4}
       - {click: 5}
       - {click: 6}
-      - {click: moreSymbols}
-      - {click: left}
+      - {click: english}
+      - {click: numT9Multiply, width: 10}
+      - {click: numT9devide, width: 10}
       - {click: 7}
       - {click: 8}
       - {click: 9}
       - {click: Return, height: *T9ReturnKeyHeight}
       - {width: 0}
-      - {click: right}
+      - {click: numT9Equal}
       - {click: periodHalf}
       - {click: 0}
       - {click: space}
@@ -144,8 +147,8 @@ preset_keyboards:
       - {click: z, swipe_up: "≈", swipe_down: "₊"}
       - {click: x, swipe_up: "_", swipe_down: "₋"}
       - {click: c, swipe_up: "=", swipe_down: "₌"}
-      - {click: v, swipe_up: "<", swipe_down: "₍"}
-      - {click: b, swipe_up: ">", swipe_down: "₎"}
+      - {click: v, swipe_up: "×", swipe_down: "₍"}
+      - {click: b, swipe_up: "÷", swipe_down: "₎"}
       - {click: n, swipe_up: "‰", swipe_down: "ₙ"}
       - {click: m, swipe_up: dotCOM, swipe_down: "ₓ"}
       - {width: 3}
@@ -204,3 +207,8 @@ preset_keys:
   # user defined keys
   plusWithPlusAndMinusLable: {label: "+-", text: "+"}
   dotCOM: {label: ".com", commit: ".com"}
+  numT9Equal: {label: "=", send: DarkSpecialCharacter, sound: "key_press_modifier.caf"}
+  numT9Plus: {label: "+", send: DarkSpecialCharacter, sound: "key_press_modifier.caf"}
+  numT9Minus: {label: "-", send: DarkSpecialCharacter, sound: "key_press_modifier.caf"}
+  numT9Multiply: {label: "*", send: DarkSpecialCharacter, sound: "key_press_modifier.caf"}
+  numT9devide: {label: "/", send: DarkSpecialCharacter, sound: "key_press_modifier.caf"}
