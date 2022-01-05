@@ -57,7 +57,7 @@ speller:
   initials: "zscfwmldynjtpqgbx"
   delimiter: " 'viu"
   algebra:
-    - xform/^([jqxy])u$/$1v
+    - xform/^([jqxy])u$/$1v/
     - xform/^zh/Z/
     - xform/^sh/S/
     - xform/^ch/C/
