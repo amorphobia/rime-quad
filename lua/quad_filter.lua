@@ -1,9 +1,6 @@
 local function check_stroke(cand, inp, db)
     local inp_stroke = inp:match("[viuoa]+")
-    if not inp_stroke then
-        return false
-    end
-    if not db then
+    if not inp_stroke or not db then
         return false
     end
     local lookup = db:lookup(cand.text)
@@ -12,7 +9,12 @@ local function check_stroke(cand, inp, db)
     lookup = lookup:gsub("p", "u")
     lookup = lookup:gsub("n", "u")
     lookup = lookup:gsub("z", "i")
-    return lookup:match("^" .. inp_stroke)
+    for stroke in lookup:gmatch("(%w+)%s?") do
+        if stroke:match("^" .. inp_stroke) then
+            return true
+        end
+    end
+    return false
 end
 
 local function pinyin_to_shuangpin(py)
@@ -77,8 +79,7 @@ local function correct_preedit(text, inp, db)
     end
     local inp = inp:sub(1, 2)
     local lookup = db:lookup(text)
-    for pinyin in lookup:gmatch("%w+%s?") do
-        pinyin = pinyin:gsub("%s+", "")
+    for pinyin in lookup:gmatch("(%w+)%s?") do
         local shuangpin = pinyin_to_shuangpin(pinyin)
         if shuangpin and shuangpin == inp then
             return pinyin
@@ -88,8 +89,7 @@ local function correct_preedit(text, inp, db)
 end
 
 local function filter(input, env)
-    local ctx = env.engine.context
-    local input_text = ctx.input
+    local input_text = env.engine.context.input
     for cand in input:iter() do
         local cand_inp = input_text:sub(cand.start + 1, cand._end)
         if utf8.len(cand.text) == 1 then
