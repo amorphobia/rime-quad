@@ -27,6 +27,9 @@ switches:
   - name: zh_simp_s2t
     reset: 0
     states: [ "简", "繁" ]
+  - name: emoji
+    reset: 1
+    states: [ "无", "🈶️" ]
 
 engine:
   processors:
@@ -123,6 +126,11 @@ key_binder:
 simplifier:
   option_name: zh_simp_s2t
   opencc_config: s2t.json
+  
+emoji:
+  opencc_config: emoji.json
+  option_name: emoji
+  tips: all
 
 recodnizer:
   import_preset: default

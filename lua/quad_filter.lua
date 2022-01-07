@@ -120,7 +120,7 @@ local function filter(input, env)
                     preedit = preedit .. inp
                 end
             end
-            cand:get_genuine().preedit = preedit
+            cand.preedit = preedit
         end
         local has_stroke = cand_inp:match("[viuoa]")
         if not has_stroke then
