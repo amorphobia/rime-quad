@@ -111,7 +111,7 @@ local function filter(input, env)
                 i = i + 1
                 local inp = cand_inp:sub(i*2-1, i*2)
                 local char_preedit = correct_preedit(text, inp, env.pinyin_db)
-                if preedit:len() > 0 then
+                if char_preedit and preedit:len() > 0 then
                     preedit = preedit .. " "
                 end
                 if char_preedit then

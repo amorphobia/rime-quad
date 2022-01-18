@@ -29,7 +29,10 @@ switches:
     states: [ "简", "繁" ]
   - name: emoji
     reset: 1
-    states: [ "无", "🈶️" ]
+    states: [ "🈚️", "🈶️" ]
+  - name: symbols
+    reset: 1
+    states: [ "无", "符" ]
 
 engine:
   processors:
@@ -50,8 +53,11 @@ engine:
   translators:
     - punct_translator
     - script_translator
+    - table_translator@user_phrases
   filters:
     - simplifier
+    - simplifier@emoji
+    - simplifier@symbols
     - uniquifier
     - lua_filter@quad_filter
 
@@ -117,6 +123,13 @@ translator:
   enable_completion: true
   db_class: tabledb
 
+user_phrases:
+  dictionary: ""
+  user_dict: quad_user
+  db_class: tabledb
+  enable_sentence: false
+  initial_quality: 0
+
 punctuator:
   import_preset: default
 
@@ -130,6 +143,11 @@ simplifier:
 emoji:
   opencc_config: emoji.json
   option_name: emoji
+  tips: all
+
+symbols:
+  opencc_config: symbol.json
+  option_name: symbols
   tips: all
 
 recodnizer:
