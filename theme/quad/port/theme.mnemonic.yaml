@@ -65,8 +65,8 @@ preset_keyboards:
       - {click: moreSymbols, width: 16.67}
       - {click: numT9, width: 16.67}
       - {click: space, width: 33.33}
-      - {click: english, width: 16.67}
-      - {click: Return, width: 16.67}
+      - {click: english, width: 10.67}
+      - {click: Return, width: 22.67}
     name: "默认键盘"
     width: 15
 
